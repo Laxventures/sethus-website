@@ -1,5 +1,7 @@
 "use client"
 
+import type React from "react"
+
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
@@ -9,6 +11,21 @@ import menuItems from "../data/menuitems"
 export default function MenuBar() {
   const pathname = usePathname()
   const [activeSection, setActiveSection] = useState("")
+
+  const handleSectionClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.includes("#")) {
+      e.preventDefault()
+      const sectionId = href.split("#")[1]
+      const element = document.getElementById(sectionId)
+      if (element) {
+        console.log("[v0] Scrolling to section:", sectionId)
+        element.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        })
+      }
+    }
+  }
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]")
@@ -82,7 +99,7 @@ export default function MenuBar() {
                         (isActive ? "text-teal-400" : "hover:text-teal-500")
                       }
                     >
-                      <Link href={item.href} className="">
+                      <Link href={item.href} className="" onClick={(e) => handleSectionClick(e, item.href)}>
                         {item.label}
                       </Link>
                       {isActive && (
