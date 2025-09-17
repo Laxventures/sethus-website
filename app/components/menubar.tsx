@@ -13,33 +13,8 @@ export default function MenuBar() {
   const [activeSection, setActiveSection] = useState("")
 
   const handleSectionClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (href.includes("#")) {
-      e.preventDefault()
-      const sectionId = href.split("#")[1]
-      console.log("[v0] Looking for element with ID:", sectionId)
-      const element = document.getElementById(sectionId)
-      console.log("[v0] Found element:", element)
-
-      if (element) {
-        console.log("[v0] Scrolling to section:", sectionId)
-        element.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        })
-
-        // Add offset for fixed header after scrollIntoView
-        setTimeout(() => {
-          const headerHeight = 100
-          const currentScrollY = window.scrollY
-          window.scrollTo({
-            top: currentScrollY - headerHeight,
-            behavior: "smooth",
-          })
-        }, 100)
-      } else {
-        console.log("[v0] Element not found with getElementById")
-      }
-    }
+    // Let the browser handle hash navigation naturally
+    // No preventDefault, no custom scrolling
   }
 
   useEffect(() => {
