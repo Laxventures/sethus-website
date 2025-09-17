@@ -78,8 +78,8 @@ export default function MenuBar() {
                     <li
                       key={item.label}
                       className={
-                        "px-3 py-2 hover:text-teal-500 transition-colors duration-200 " +
-                        (isActive ? "text-white bg-teal-500 rounded-full" : "")
+                        "px-3 py-2 transition-colors duration-200 " +
+                        (isActive ? "text-teal-400" : "hover:text-teal-500")
                       }
                     >
                       <Link href={item.href} className="">
