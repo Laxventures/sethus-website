@@ -22,26 +22,20 @@ export default function MenuBar() {
 
       if (element) {
         console.log("[v0] Scrolling to section:", sectionId)
-        const headerHeight = 100 // Account for fixed header height
-        const elementRect = element.getBoundingClientRect()
-        const absoluteElementTop = elementRect.top + window.scrollY
-        const scrollPosition = absoluteElementTop - headerHeight
-
-        console.log(
-          "[v0] Element rect top:",
-          elementRect.top,
-          "Window scrollY:",
-          window.scrollY,
-          "Absolute top:",
-          absoluteElementTop,
-          "Scroll to:",
-          scrollPosition,
-        )
-
-        window.scrollTo({
-          top: scrollPosition,
+        element.scrollIntoView({
           behavior: "smooth",
+          block: "start",
         })
+
+        // Add offset for fixed header after scrollIntoView
+        setTimeout(() => {
+          const headerHeight = 100
+          const currentScrollY = window.scrollY
+          window.scrollTo({
+            top: currentScrollY - headerHeight,
+            behavior: "smooth",
+          })
+        }, 100)
       } else {
         console.log("[v0] Element not found with getElementById")
       }
