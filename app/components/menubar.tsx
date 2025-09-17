@@ -38,7 +38,7 @@ export default function MenuBar() {
     <header className="">
       <div className="fixed w-full z-50">
         <div className="">
-          <div className="mx-auto w-full max-w-7xl pt-6 bg-[#18181B] dark:bg-[#18181B]">
+          <div className="mx-auto w-full max-w-7xl pt-6 bg-[#18181B] dark:bg-[#18181B] px-4 sm:px-6 lg:px-8">
             <div className="flex flex-row justify-between items-center text-black  dark:text-white">
               <div>
                 <Image
