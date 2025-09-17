@@ -85,7 +85,9 @@ export default function MenuBar() {
                       <Link href={item.href} className="">
                         {item.label}
                       </Link>
-                      {isActive && <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-teal-400 rounded-full" />}
+                      {isActive && (
+                        <div className="absolute bottom-0 left-[15%] right-[15%] h-0.5 bg-teal-400 rounded-full" />
+                      )}
                     </li>
                   )
                 })}
