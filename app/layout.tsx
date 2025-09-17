@@ -1,5 +1,3 @@
-"use client" // Required for client-side components in the App Router
-
 import type React from "react"
 
 import type { Metadata } from "next"
@@ -33,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem suppressHydrationWarning>
           <MenuBar />
           {children}
         </ThemeProvider>
