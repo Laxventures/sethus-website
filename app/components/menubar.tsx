@@ -57,7 +57,7 @@ export default function MenuBar() {
                   height={40}
                 />
               </div>
-              <ul className="flex flex-row gap-4 px-2 rounded-full pointer-events-auto text-sm font-medium text-zinc-800 shadow-lg ring-1 shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur-sm dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
+              <ul className="flex flex-row gap-4 px-2 rounded-full pointer-events-auto text-sm font-medium bg-card/80 text-foreground shadow-lg ring-1 ring-border backdrop-blur-sm">
                 {menuItems.map((item) => {
                   const sectionId = item.href.includes("#") ? item.href.split("#")[1] : ""
                   const isActive = activeSection === sectionId || (item.href === "/" && activeSection === "home")
@@ -67,14 +67,14 @@ export default function MenuBar() {
                       key={item.label}
                       className={
                         "px-3 py-2 transition-colors duration-200 relative " +
-                        (isActive ? "text-teal-400" : "hover:text-teal-500")
+                        (isActive ? "text-teal-600" : "hover:text-teal-600")
                       }
                     >
                       <Link href={item.href} className="">
                         {item.label}
                       </Link>
                       {isActive && (
-                        <div className="absolute bottom-0 left-[15%] right-[15%] h-0.5 bg-teal-400 rounded-full" />
+                        <div className="absolute bottom-0 left-[15%] right-[15%] h-0.5 bg-teal-600 rounded-full" />
                       )}
                     </li>
                   )
@@ -83,7 +83,7 @@ export default function MenuBar() {
               <div className="pointer-events-auto">
                 {mounted ? (
                   <button
-                    className="px-3 py-2 rounded-full bg-zinc-800 hover:bg-zinc-700 border border-zinc-600 text-white transition-colors duration-200 shadow-lg"
+                    className="px-3 py-2 rounded-full bg-card hover:bg-accent border border-border text-foreground transition-colors duration-200 shadow-lg"
                     aria-label="Toggle theme"
                     onClick={() => {
                       console.log("[v0] Theme toggle clicked, current theme:", theme)
@@ -113,7 +113,7 @@ export default function MenuBar() {
                     )}
                   </button>
                 ) : (
-                  <div className="px-3 py-2 w-11 h-11 rounded-full bg-zinc-800 border border-zinc-600 animate-pulse" />
+                  <div className="px-3 py-2 w-11 h-11 rounded-full bg-card border border-border animate-pulse" />
                 )}
               </div>
             </div>
