@@ -22,16 +22,21 @@ export default function MenuBar() {
 
       if (element) {
         console.log("[v0] Scrolling to section:", sectionId)
-        let elementTop = 0
-        let currentElement = element as HTMLElement
-        while (currentElement) {
-          elementTop += currentElement.offsetTop
-          currentElement = currentElement.offsetParent as HTMLElement
-        }
-
         const headerHeight = 100 // Account for fixed header height
-        const scrollPosition = elementTop - headerHeight
-        console.log("[v0] Element absolute position:", elementTop, "Scroll to:", scrollPosition)
+        const elementRect = element.getBoundingClientRect()
+        const absoluteElementTop = elementRect.top + window.scrollY
+        const scrollPosition = absoluteElementTop - headerHeight
+
+        console.log(
+          "[v0] Element rect top:",
+          elementRect.top,
+          "Window scrollY:",
+          window.scrollY,
+          "Absolute top:",
+          absoluteElementTop,
+          "Scroll to:",
+          scrollPosition,
+        )
 
         window.scrollTo({
           top: scrollPosition,
