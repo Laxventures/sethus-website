@@ -1,7 +1,5 @@
 "use client"
 
-import type React from "react"
-
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
@@ -12,25 +10,14 @@ export default function MenuBar() {
   const pathname = usePathname()
   const [activeSection, setActiveSection] = useState("")
 
-  const handleSectionClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    // Let the browser handle hash navigation naturally
-    // No preventDefault, no custom scrolling
-  }
-
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]")
-    console.log(
-      "[v0] Found sections:",
-      Array.from(sections).map((s) => s.id),
-    )
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          console.log("[v0] Section:", entry.target.id, "Intersecting:", entry.isIntersecting)
           if (entry.isIntersecting) {
             setActiveSection(entry.target.id)
-            console.log("[v0] Active section set to:", entry.target.id)
           }
         })
       },
@@ -68,19 +55,6 @@ export default function MenuBar() {
                   const sectionId = item.href.includes("#") ? item.href.split("#")[1] : ""
                   const isActive = activeSection === sectionId || (item.href === "/" && activeSection === "home")
 
-                  console.log(
-                    "[v0] Item:",
-                    item.label,
-                    "href:",
-                    item.href,
-                    "sectionId:",
-                    sectionId,
-                    "activeSection:",
-                    activeSection,
-                    "isActive:",
-                    isActive,
-                  )
-
                   return (
                     <li
                       key={item.label}
@@ -89,7 +63,7 @@ export default function MenuBar() {
                         (isActive ? "text-teal-400" : "hover:text-teal-500")
                       }
                     >
-                      <Link href={item.href} className="" onClick={(e) => handleSectionClick(e, item.href)}>
+                      <Link href={item.href} className="">
                         {item.label}
                       </Link>
                       {isActive && (

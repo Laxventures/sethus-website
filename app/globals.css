@@ -122,7 +122,4 @@
 }
 
 /* Adding smooth scroll behavior and scroll padding for fixed header */
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 100px;
-}
+/* Removed scroll behavior CSS that was interfering with navigation */
