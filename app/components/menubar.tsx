@@ -58,7 +58,7 @@ export default function MenuBar() {
               </div>
               <ul className="flex flex-row gap-4 px-2 rounded-full pointer-events-auto text-sm font-medium text-zinc-800 shadow-lg ring-1 shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur-sm dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
                 {menuItems.map((item) => {
-                  const sectionId = item.href.startsWith("#") ? item.href.substring(1) : ""
+                  const sectionId = item.href.includes("#") ? item.href.split("#")[1] : ""
                   const isActive = activeSection === sectionId || (item.href === "/" && activeSection === "home")
 
                   console.log(
