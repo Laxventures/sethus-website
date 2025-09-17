@@ -21,7 +21,7 @@ export default function Certificates() {
               {certificates.map((cert: Certificate, idx) => (
                 <li key={idx} className="group relative flex flex-col items-start">
                   <div className="flex flex-col">
-                    <div className="absolute -inset-x-4 -inset-y-6 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl dark:bg-zinc-800/50"></div>
+                    <div className="absolute -inset-x-4 -inset-y-6 z-0 scale-95 bg-transparent border border-zinc-200 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl dark:bg-zinc-700/30 dark:border-zinc-600"></div>
                     <div className="relative mt-4 text-base font-semibold text-foreground">
                       <span>{cert.title}</span>
                     </div>
