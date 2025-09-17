@@ -19,9 +19,11 @@ export default function MenuBar() {
       const element = document.getElementById(sectionId)
       if (element) {
         console.log("[v0] Scrolling to section:", sectionId)
-        element.scrollIntoView({
+        const headerHeight = 100 // Account for fixed header height
+        const elementPosition = element.offsetTop - headerHeight
+        window.scrollTo({
+          top: elementPosition,
           behavior: "smooth",
-          block: "start",
         })
       }
     }
