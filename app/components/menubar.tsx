@@ -22,8 +22,9 @@ export default function MenuBar() {
 
       if (element) {
         console.log("[v0] Scrolling to section:", sectionId)
+        const rect = element.getBoundingClientRect()
         const headerHeight = 100 // Account for fixed header height
-        const elementPosition = element.offsetTop - headerHeight
+        const elementPosition = window.scrollY + rect.top - headerHeight
         console.log("[v0] Element position:", elementPosition)
         window.scrollTo({
           top: elementPosition,
@@ -35,8 +36,9 @@ export default function MenuBar() {
         console.log("[v0] querySelector found:", altElement)
 
         if (altElement) {
+          const rect = altElement.getBoundingClientRect()
           const headerHeight = 100
-          const elementPosition = (altElement as HTMLElement).offsetTop - headerHeight
+          const elementPosition = window.scrollY + rect.top - headerHeight
           console.log("[v0] Alternative scroll to position:", elementPosition)
           window.scrollTo({
             top: elementPosition,
