@@ -81,11 +81,14 @@ export default function MenuBar() {
                 })}
               </ul>
               <div className="pointer-events-auto">
-                {mounted && (
+                {mounted ? (
                   <button
-                    className="px-3 py-2 rounded-full bg-zinc-700 hover:bg-zinc-600 text-white transition-colors duration-200"
+                    className="px-3 py-2 rounded-full bg-zinc-800 hover:bg-zinc-700 border border-zinc-600 text-white transition-colors duration-200 shadow-lg"
                     aria-label="Toggle theme"
-                    onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                    onClick={() => {
+                      console.log("[v0] Theme toggle clicked, current theme:", theme)
+                      setTheme(theme === "dark" ? "light" : "dark")
+                    }}
                   >
                     {theme === "dark" ? (
                       <svg width={20} height={20} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -109,6 +112,8 @@ export default function MenuBar() {
                       </svg>
                     )}
                   </button>
+                ) : (
+                  <div className="px-3 py-2 w-11 h-11 rounded-full bg-zinc-800 border border-zinc-600 animate-pulse" />
                 )}
               </div>
             </div>
