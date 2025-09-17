@@ -18,7 +18,8 @@ const geistMono = Geist_Mono({
 
 const metadata: Metadata = {
   title: "Sethu palaniyappan | Full Stack Engineer",
-  description: "Professional portfolio of Sethu Palaniyappan, a Full Stack Engineer with expertise in Java, Spring Boot, React, and cloud technologies."
+  description: "Professional portfolio of Sethu Palaniyappan, a Full Stack Engineer with expertise in Java, Spring Boot, React, and cloud technologies.",
+    generator: 'v0.app'
 };
 
 export default function RootLayout({
