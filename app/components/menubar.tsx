@@ -12,12 +12,18 @@ export default function MenuBar() {
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]")
+    console.log(
+      "[v0] Found sections:",
+      Array.from(sections).map((s) => s.id),
+    )
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
+          console.log("[v0] Section:", entry.target.id, "Intersecting:", entry.isIntersecting)
           if (entry.isIntersecting) {
-            setActiveSection(`#${entry.target.id}`)
+            setActiveSection(entry.target.id)
+            console.log("[v0] Active section set to:", entry.target.id)
           }
         })
       },
@@ -52,19 +58,28 @@ export default function MenuBar() {
               </div>
               <ul className="flex flex-row gap-4 px-2 rounded-full pointer-events-auto text-sm font-medium text-zinc-800 shadow-lg ring-1 shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur-sm dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
                 {menuItems.map((item) => {
-                  const isActive =
-                    item.href === "/"
-                      ? (pathname === "/" && activeSection === "") || activeSection === ""
-                      : activeSection === item.href.split("#")[1]
-                        ? `#${activeSection.split("#")[1]}` === item.href
-                        : false
+                  const sectionId = item.href.startsWith("#") ? item.href.substring(1) : ""
+                  const isActive = activeSection === sectionId || (item.href === "/" && activeSection === "home")
+
+                  console.log(
+                    "[v0] Item:",
+                    item.label,
+                    "href:",
+                    item.href,
+                    "sectionId:",
+                    sectionId,
+                    "activeSection:",
+                    activeSection,
+                    "isActive:",
+                    isActive,
+                  )
 
                   return (
                     <li
                       key={item.label}
                       className={
                         "px-3 py-2 hover:text-teal-500 transition-colors duration-200 " +
-                        (isActive ? "text-teal-400 active" : "")
+                        (isActive ? "text-white bg-teal-500 rounded-full" : "")
                       }
                     >
                       <Link href={item.href} className="">
