@@ -16,15 +16,33 @@ export default function MenuBar() {
     if (href.includes("#")) {
       e.preventDefault()
       const sectionId = href.split("#")[1]
+      console.log("[v0] Looking for element with ID:", sectionId)
       const element = document.getElementById(sectionId)
+      console.log("[v0] Found element:", element)
+
       if (element) {
         console.log("[v0] Scrolling to section:", sectionId)
         const headerHeight = 100 // Account for fixed header height
         const elementPosition = element.offsetTop - headerHeight
+        console.log("[v0] Element position:", elementPosition)
         window.scrollTo({
           top: elementPosition,
           behavior: "smooth",
         })
+      } else {
+        console.log("[v0] getElementById failed, trying querySelector")
+        const altElement = document.querySelector(`#${sectionId}`)
+        console.log("[v0] querySelector found:", altElement)
+
+        if (altElement) {
+          const headerHeight = 100
+          const elementPosition = (altElement as HTMLElement).offsetTop - headerHeight
+          console.log("[v0] Alternative scroll to position:", elementPosition)
+          window.scrollTo({
+            top: elementPosition,
+            behavior: "smooth",
+          })
+        }
       }
     }
   }
