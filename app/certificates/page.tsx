@@ -1,46 +1,51 @@
-import { BsLink } from "react-icons/bs";
-import { Certificate, certificates } from "../data/certificates";
-import { formatDate } from "../utils/date";
+import { type Certificate, certificates } from "../data/certificates"
+import { formatDate } from "../utils/date"
 
 export default function Certificates() {
-    return (
-        <section id="certificates">
-            <div className="flex flex-row justify-center min-h-100 px-8 pt-24 pb-16 gap-8 sm:px-8 font-[family-name:var(--font-geist-sans)]">
-                <div className="flex flex-col gap-8">
-                    <div className="flex flex-col items-center justify-center">
-                        <div className="flex flex-col items-center gap-2 pb-4 text-zinc-800 dark:text-zinc-100">
-                            <h1 className="text-4xl font-bold">Certificates & Courses</h1>
-                            <span className="px-7 py-1 rounded-full bg-teal-500"></span>
-                        </div>
-                        <p className="text-base text-zinc-700 dark:text-zinc-300">
-                            Here’s where you’ll get to know me better — what I’m working on, what I love to build, and the tech stack I work with every day.
-                        </p>
-                    </div>
-                    <div className="flex mt-6">
-                        <ul className="grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
-                            {certificates.map((cert: Certificate, idx) => (
-                                <li key={idx} className="group relative flex flex-col items-start">
-                                    <div className="flex flex-col">
-                                        <div className="absolute -inset-x-4 -inset-y-6 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl dark:bg-zinc-800/50"></div>
-                                        <div className="relative mt-4 text-base font-semibold text-zinc-800 dark:text-zinc-100">
-                                            <span>{cert.title}</span>
-                                        </div>
-                                        <div className="relative text-sm text-zinc-600 dark:text-zinc-400">
-                                            <span>{cert.issuer} | {formatDate(cert.issueDate)}</span>
-                                        </div>
-                                        <div className="relative flex items-center mt-4 group-hover:underline text-sm font-medium text-zinc-400 transition group-hover:text-teal-500 dark:text-zinc-200">
-                                            <BsLink />
-                                            <a href={cert.credentialUrl} target="_blank" rel="noopener noreferrer" className="ml-2">
-                                                {cert.linkDisplayText}
-                                            </a>
-                                        </div>
-                                    </div>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                </div>
+  return (
+    <section id="certificates">
+      <div className="flex flex-row justify-center min-h-100 px-8 pt-24 pb-16 gap-8 sm:px-8 font-[family-name:var(--font-geist-sans)]">
+        <div className="flex flex-col gap-8">
+          <div className="flex flex-col items-center justify-center">
+            <div className="flex flex-col items-center gap-2 pb-4 text-zinc-800 dark:text-zinc-100">
+              <h1 className="text-4xl font-bold">Certificates & Courses</h1>
+              <span className="px-7 py-1 rounded-full bg-teal-500"></span>
             </div>
-        </section>
-    );
+            <p className="text-base text-zinc-700 dark:text-zinc-300">
+              Here's where you'll get to know me better — what I'm working on, what I love to build, and the tech stack
+              I work with every day.
+            </p>
+          </div>
+          <div className="flex mt-6">
+            <ul className="grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
+              {certificates.map((cert: Certificate, idx) => (
+                <li key={idx} className="group relative flex flex-col items-start">
+                  <div className="flex flex-col">
+                    <div className="absolute -inset-x-4 -inset-y-6 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl dark:bg-zinc-800/50"></div>
+                    <div className="relative mt-4 text-base font-semibold text-zinc-800 dark:text-zinc-100">
+                      <span>{cert.title}</span>
+                    </div>
+                    <div className="relative text-sm text-zinc-600 dark:text-zinc-400">
+                      <span>
+                        {cert.issuer} | {formatDate(cert.issueDate)}
+                      </span>
+                    </div>
+                    <div className="relative flex items-center mt-4 group-hover:underline text-sm font-medium text-zinc-400 transition group-hover:text-teal-500 dark:text-zinc-200">
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 6.5H6.354zM4.616 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm6.768 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+                        <path d="M13 5.5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 .5-.5zM13 3a3 3 0 0 1 3 3v4a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h10z" />
+                      </svg>
+                      <a href={cert.credentialUrl} target="_blank" rel="noopener noreferrer" className="ml-2">
+                        {cert.linkDisplayText}
+                      </a>
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
 }
