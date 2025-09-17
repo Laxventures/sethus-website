@@ -1,4 +1,4 @@
-import SkillsTabs from "../components/skillstabs";
+import SkillsTabs from "../components/SkillsTabs";
 
 export default function About() {
     return (

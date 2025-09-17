@@ -4,18 +4,18 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import menuItems from "../data/menuitems";
-import { useTheme } from 'next-themes';
+// import { useTheme } from 'next-themes';
 import { BsMoon, BsSun } from "react-icons/bs";
 
 
 export default function MenuBar() {
 
     const pathname = usePathname();
-    const { theme, setTheme } = useTheme();
+    // const { theme, setTheme } = useTheme();
 
-    const toggleTheme = (): void => {
-        setTheme(theme === 'dark' ? 'light' : 'dark')
-    };
+    // const toggleTheme = (): void => {
+    //     setTheme(theme === 'dark' ? 'light' : 'dark')
+    // };
 
     return (
         <header className="">
@@ -38,11 +38,11 @@ export default function MenuBar() {
                                 }
                             </ul>
                             <div className="pointer-events-auto">
-                                <button className="px-3 py-2 rounded-full bg-gray-600 hover:bg-gray-700 text-white" aria-label="Toggle theme" onClick={toggleTheme}>
-                                    {theme === "dark" ? <BsSun width={24} height={24} className="dark:invert" /> : <BsMoon width={24} height={24} className="dark:invert" />}
+                                {/* <button className="px-3 py-2 rounded-full bg-gray-600 hover:bg-gray-700 text-white" aria-label="Toggle theme" onClick={toggleTheme}> */}
+                                    {/* {theme === "dark" ? <BsSun width={24} height={24} className="dark:invert" /> : <BsMoon width={24} height={24} className="dark:invert" />} */}
                                     {/* <Image aria-hidden hidden={theme === "dark"} className="dark:invert" src="/light.svg" alt="Light Theme" width={24} height={24} />
                                     <Image aria-hidden hidden={theme === "light"} className="dark:invert" src="/dark.svg" alt="Dark Theme" width={24} height={24} /> */}
-                                </button>
+                                {/* </button> */}
                             </div>
                         </div>
                     </div>
