@@ -3,15 +3,36 @@
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
+import { useState, useEffect } from "react"
 import menuItems from "../data/menuitems"
 
 export default function MenuBar() {
   const pathname = usePathname()
-  // const { theme, setTheme } = useTheme();
+  const [activeSection, setActiveSection] = useState("")
 
-  // const toggleTheme = (): void => {
-  //     setTheme(theme === 'dark' ? 'light' : 'dark')
-  // };
+  useEffect(() => {
+    const sections = document.querySelectorAll("section[id]")
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(`#${entry.target.id}`)
+          }
+        })
+      },
+      {
+        threshold: 0.3,
+        rootMargin: "-100px 0px -50% 0px",
+      },
+    )
+
+    sections.forEach((section) => observer.observe(section))
+
+    return () => {
+      sections.forEach((section) => observer.unobserve(section))
+    }
+  }, [])
 
   return (
     <header className="">
@@ -30,18 +51,28 @@ export default function MenuBar() {
                 />
               </div>
               <ul className="flex flex-row gap-4 px-2 rounded-full pointer-events-auto text-sm font-medium text-zinc-800 shadow-lg ring-1 shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur-sm dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
-                {menuItems.map((item) => (
-                  <li
-                    key={item.label}
-                    className={
-                      "px-3 py-2  hover:text-teal-500 " + (pathname === item.href ? "text-teal-400 active" : "")
-                    }
-                  >
-                    <Link href={item.href} className="">
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
+                {menuItems.map((item) => {
+                  const isActive =
+                    item.href === "/"
+                      ? (pathname === "/" && activeSection === "") || activeSection === ""
+                      : activeSection === item.href.split("#")[1]
+                        ? `#${activeSection.split("#")[1]}` === item.href
+                        : false
+
+                  return (
+                    <li
+                      key={item.label}
+                      className={
+                        "px-3 py-2 hover:text-teal-500 transition-colors duration-200 " +
+                        (isActive ? "text-teal-400 active" : "")
+                      }
+                    >
+                      <Link href={item.href} className="">
+                        {item.label}
+                      </Link>
+                    </li>
+                  )
+                })}
               </ul>
               <div className="pointer-events-auto">
                 {/* <button className="px-3 py-2 rounded-full bg-gray-600 hover:bg-gray-700 text-white" aria-label="Toggle theme" onClick={toggleTheme}> */}
