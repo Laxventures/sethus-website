@@ -4,13 +4,13 @@ import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { useState, useEffect } from "react"
-import { useTheme } from "next-themes"
+import { useTheme } from "./theme-context"
 import menuItems from "../data/menuitems"
 
 export default function MenuBar() {
   const pathname = usePathname()
   const [activeSection, setActiveSection] = useState("")
-  const { theme, setTheme } = useTheme()
+  const { theme, toggleTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -87,7 +87,7 @@ export default function MenuBar() {
                     aria-label="Toggle theme"
                     onClick={() => {
                       console.log("[v0] Theme toggle clicked, current theme:", theme)
-                      setTheme(theme === "dark" ? "light" : "dark")
+                      toggleTheme()
                     }}
                   >
                     {theme === "dark" ? (
